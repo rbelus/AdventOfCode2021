@@ -5,10 +5,12 @@ project(AdventOfCode2021)
 # Source list
 set (sourceList
 	main.cpp
-	Sonar.cpp)
+	Sonar.cpp
+	SubmarineControl.cpp)
 
 set (headerList
-	Sonar.h)
+	Sonar.h
+	SubmarineControl.h)
 
 
 add_executable(AdventOfCode2021 ${sourceList})
