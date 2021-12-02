@@ -35,5 +35,5 @@ public:
 
 private:
 	std::vector < std::pair<DIR, int> > chartCourse_;
-	int x, y;
+	int x, y, aim;
 };

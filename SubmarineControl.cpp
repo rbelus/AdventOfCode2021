@@ -6,7 +6,8 @@
 
 SubmarineControl::SubmarineControl(const std::filesystem::path& path) :
 	x(0),
-	y(0)
+	y(0),
+	aim(0)
 {
 	std::ifstream file(path.c_str(), std::ifstream::in);
 	if (file.good())
@@ -34,13 +35,14 @@ void SubmarineControl::Navigate()
 		switch (instructions.first)
 		{
 		case DIR::UP:
-			y -= instructions.second;
+			aim -= instructions.second;
 			break;
 		case DIR::FORWARD:
 			x += instructions.second;
+			y += aim * instructions.second;
 			break;
 		case DIR::DOWN:
-			y += instructions.second;
+			aim += instructions.second;
 			break;
 		case DIR::UNKNOWN:
 			assert(false);

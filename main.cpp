@@ -24,7 +24,7 @@ int main()
 	int x = subControl.GetHorizontalPosition(), y = subControl.GetDepth();
 	std::cout << "New Horizontal position : " << x << std::endl;
 	std::cout << "New Depth : " << y << std::endl;
-	std::cout << "Result for Day2 part1 : " << x * y << std::endl;
+	std::cout << "Result for Day2 part2 : " << x * y << std::endl;
 
 
 	return 0;
