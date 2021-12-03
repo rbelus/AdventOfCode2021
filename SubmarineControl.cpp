@@ -1,4 +1,6 @@
 #include "SubmarineControl.h"
+#include "Tools.h"
+
 #include <fstream>
 #include <iostream>
 #include <string>
@@ -9,23 +11,17 @@ SubmarineControl::SubmarineControl(const std::filesystem::path& path) :
 	y(0),
 	aim(0)
 {
-	std::ifstream file(path.c_str(), std::ifstream::in);
-	if (file.good())
+	auto computeCourse = [&](std::stringstream& stream)
 	{
-		while (file.peek() != EOF)
-		{
-			std::string curLine;
-			std::getline(file, curLine);
+		std::string dirStr;
+		int force;
+		stream >> dirStr >> force;
 
-			std::stringstream stream(curLine);
-			std::string dirStr;
-			int force;
-			stream >> dirStr >> force;
+		DIR dir = StringToDir(dirStr);
+		chartCourse_.push_back({ dir, force });
+	};
 
-			DIR dir = StringToDir(dirStr);
-			chartCourse_.push_back({ dir, force });
-		}
-	}
+	ParseLinesInFile(path, computeCourse);
 }
 
 void SubmarineControl::Navigate()

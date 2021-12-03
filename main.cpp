@@ -2,6 +2,7 @@
 
 #include "Sonar.h"
 #include "SubmarineControl.h"
+#include "BitDiagnostic.h"
 
 #define AOC_INPUT_DIR AOC_INPUT_DIR_CMAKE
 
@@ -26,6 +27,16 @@ int main()
 	std::cout << "New Depth : " << y << std::endl;
 	std::cout << "Result for Day2 part2 : " << x * y << std::endl;
 
+	// Day 3 diagnostic
+	inputFile = std::string(AOC_INPUT_DIR) + "/day3.txt";
+	inputFile.make_preferred();
+
+	uint32_t gamma, epsilon;
+	BitDiagnostic<12> bitDiag(inputFile);
+	bitDiag.ComputeGammaEpsilonRate(gamma, epsilon);
+
+	std::cout << "Gamma Rate : " << gamma << " Epsilon Rate : " << epsilon << std::endl;
+	std::cout << "Result for Day3 part1 : " << gamma * epsilon << std::endl;
 
 	return 0;
 }

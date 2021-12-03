@@ -1,4 +1,6 @@
 #include "Sonar.h"
+#include "Tools.h"
+
 #include <fstream>
 #include <iostream>
 #include <string>
@@ -6,16 +8,15 @@
 
 Sonar::Sonar(const std::filesystem::path& path)
 {
-	std::ifstream file(path.c_str(), std::ifstream::in);
-	if (file.good())
+	auto measureDepth = [&](std::stringstream& stream)
 	{
-		while (file.peek() != EOF)
-		{
-			std::string curLine;
-			std::getline(file, curLine);
-			depthMeasurements_.push_back(std::stoul(curLine));
-		}
-	}
+		long depth;
+		stream >> depth;
+
+		depthMeasurements_.push_back(depth);
+	};
+
+	ParseLinesInFile(path, measureDepth);
 }
 
 size_t Sonar::GetDepthIncreases(const std::vector<size_t>& depthList) const
