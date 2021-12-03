@@ -23,6 +23,7 @@ public:
 	}
 
 	void ComputeGammaEpsilonRate(uint32_t& gamma, uint32_t& epsilon);
+	void ComputeOxygenCO2Levels(uint32_t& oxygen, uint32_t& co2);
 
 private:
 	std::vector<std::bitset<BitSize>> bitPrompt_;

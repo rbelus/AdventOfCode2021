@@ -38,5 +38,11 @@ int main()
 	std::cout << "Gamma Rate : " << gamma << " Epsilon Rate : " << epsilon << std::endl;
 	std::cout << "Result for Day3 part1 : " << gamma * epsilon << std::endl;
 
+	uint32_t oxygen, co2;
+	bitDiag.ComputeOxygenCO2Levels(oxygen, co2);
+
+	std::cout << "Oxygen : " << oxygen << " Carbon Dioxide : " << co2 << std::endl;
+	std::cout << "Result for Day3 part2 : " << oxygen * co2 << std::endl;
+
 	return 0;
 }
