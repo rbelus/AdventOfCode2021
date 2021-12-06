@@ -4,7 +4,7 @@
 
 #include <regex>
 
-HydroVentComputer::HydroVentComputer(const std::filesystem::path& path)
+HydroVentComputer::HydroVentComputer(const std::filesystem::path& path, bool withDiags)
 {
 	ventMatrix_.resize(1000, 1000);
 	ventMatrix_.fill(0);
@@ -26,15 +26,32 @@ HydroVentComputer::HydroVentComputer(const std::filesystem::path& path)
 		{
 			int yMax = std::max(y1, y2);
 			int yMin = std::min(y1, y2);
-			for(int y = yMin; y <= yMax; y++)
-				ventMatrix_(x1,y) += 1;
+			for (int y = yMin; y <= yMax; y++)
+				ventMatrix_(x1, y)++;
 		}
 		if (y1 == y2)
 		{
 			int xMax = std::max(x1, x2);
 			int xMin = std::min(x1, x2);
 			for (int x = xMin; x <= xMax; x++)
-				ventMatrix_(x, y1) += 1;
+				ventMatrix_(x, y1)++;
+		}
+		// consider diagonal lines !
+		if (withDiags && abs(x1 - x2) == abs(y1 - y2))
+		{
+			// Figure out the diag sense... can't be bothered making something more usable in cpp for now...
+			if (y2 > y1 && x2 > x1)
+				for (int i = 0; i < abs(x1 - x2) + 1; ++i)
+					ventMatrix_(x1 + i, y1 + i)++;
+			if (y2 < y1 && x2 > x1)
+				for (int i = 0; i < abs(x1 - x2) + 1; ++i)
+					ventMatrix_(x1 + i, y1 - i)++;
+			if (y2 > y1 && x2 < x1)
+				for (int i = 0; i < abs(x1 - x2) + 1; ++i)
+					ventMatrix_(x1 - i, y1 + i)++;
+			if (y2 < y1 && x2 < x1)
+				for (int i = 0; i < abs(x1 - x2) + 1; ++i)
+					ventMatrix_(x1 - i, y1 - i)++;
 		}
     };
 

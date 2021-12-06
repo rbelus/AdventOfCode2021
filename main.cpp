@@ -61,10 +61,15 @@ int main()
 	inputFile = std::string(AOC_INPUT_DIR) + "/day5.txt";
 	inputFile.make_preferred();
 
-	HydroVentComputer hydro(inputFile);
+	HydroVentComputer hydro(inputFile, false);
 	int hydroOverlaps = hydro.CountOverlaps();
 
-	std::cout << "Day5 part1 :" << hydroOverlaps << std::endl;
+	std::cout << "Day5 part1 : " << hydroOverlaps << std::endl;
+
+	hydro = HydroVentComputer(inputFile, true);
+	hydroOverlaps = hydro.CountOverlaps();
+
+	std::cout << "Day5 part2 : " << hydroOverlaps << std::endl;
 
 
 	return 0;

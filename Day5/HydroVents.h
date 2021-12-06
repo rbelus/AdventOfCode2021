@@ -7,7 +7,7 @@
 class HydroVentComputer
 {
 public:
-	HydroVentComputer(const std::filesystem::path& path);
+	HydroVentComputer(const std::filesystem::path& path, bool withDiags);
 
 	int CountOverlaps();
 
