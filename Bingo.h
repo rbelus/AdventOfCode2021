@@ -32,12 +32,12 @@ class Bingo
 		uint16_t winningNumber_;
 	};
 
-	const Bingo::BingoBoard& PlayMainLoop();
+	const Bingo::BingoBoard& PlayMainLoop(bool toWin);
 
 public:
 	Bingo(const std::filesystem::path& path);
 
-	uint32_t Play();
+	uint32_t Play(bool toWin);
 
 private:
 	std::vector<BingoBoard> bingoBoards_;

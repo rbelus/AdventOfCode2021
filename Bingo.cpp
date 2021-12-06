@@ -50,17 +50,32 @@ Bingo::Bingo(const std::filesystem::path& path)
 	}
 }
 
-const Bingo::BingoBoard& Bingo::PlayMainLoop()
+const Bingo::BingoBoard& Bingo::PlayMainLoop(bool toWin)
 {
 	for (auto nb : bingoNumbers_)
 	{
-		for (auto& bingoBoard : bingoBoards_)
+		for (auto bingoBoard = bingoBoards_.begin(); bingoBoard < bingoBoards_.end();)
 		{
-			bingoBoard.MarkNumber(nb);
-			if (bingoBoard.HasWon())
+			bingoBoard->MarkNumber(nb);
+			if (bingoBoard->HasWon())
 			{
-				bingoBoard.winningNumber_ = nb;
-				return bingoBoard;
+				bingoBoard->winningNumber_ = nb;
+				if (toWin)
+					return *bingoBoard;
+				else if (bingoBoards_.size() > 1)
+				{
+					auto nextBoard = bingoBoards_.erase(bingoBoard);
+					if (nextBoard != bingoBoards_.end())
+						bingoBoard = nextBoard;
+					else
+						break;
+				}
+				else
+					return *bingoBoard;
+			}
+			else
+			{
+				bingoBoard++;
 			}
 		}
 	}
@@ -69,9 +84,9 @@ const Bingo::BingoBoard& Bingo::PlayMainLoop()
 	return Bingo::BingoBoard();
 }
 
-uint32_t Bingo::Play()
+uint32_t Bingo::Play(bool toWin)
 {
-	const auto& winningBoard = PlayMainLoop();
+	const auto& winningBoard = PlayMainLoop(toWin);
 
 	// Compute Score
 	uint32_t score = 0;

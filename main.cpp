@@ -50,9 +50,11 @@ int main()
 	inputFile.make_preferred();
 
 	Bingo bingo(inputFile);
-	auto score = bingo.Play();
+	auto scoreWin = bingo.Play(true);
+	std::cout << "Day4 part1 :" << scoreWin << std::endl;
 
-	std::cout << "Day4 part1 :" << score << std::endl;
+	auto scoreLose = bingo.Play(false);
+	std::cout << "Day4 part2 :" << scoreLose << std::endl;
 
 	return 0;
 }
