@@ -3,6 +3,7 @@
 #include "Sonar.h"
 #include "SubmarineControl.h"
 #include "BitDiagnostic.h"
+#include "Bingo.h"
 
 #define AOC_INPUT_DIR AOC_INPUT_DIR_CMAKE
 
@@ -43,6 +44,12 @@ int main()
 
 	std::cout << "Oxygen : " << oxygen << " Carbon Dioxide : " << co2 << std::endl;
 	std::cout << "Result for Day3 part2 : " << oxygen * co2 << std::endl;
+
+	// Day 4 we play bingo
+	inputFile = std::string(AOC_INPUT_DIR) + "/day4.txt";
+	inputFile.make_preferred();
+
+	Bingo bingo(inputFile);
 
 	return 0;
 }

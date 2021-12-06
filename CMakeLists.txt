@@ -8,13 +8,15 @@ set (sourceList
 	Tools.cpp
 	Sonar.cpp
 	SubmarineControl.cpp
-	BitDiagnostic.cpp)
+	BitDiagnostic.cpp
+	Bingo.cpp)
 
 set (headerList
 	Tools.h
 	Sonar.h
 	SubmarineControl.h
-	BitDiagnostic.h)
+	BitDiagnostic.h
+	Bingo.h)
 
 
 add_executable(AdventOfCode2021 ${sourceList})
