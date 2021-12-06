@@ -4,6 +4,7 @@
 #include <fstream>
 #include <iostream>
 #include <string>
+#include <numeric>
 
 Bingo::Bingo(const std::filesystem::path& path)
 {
@@ -37,7 +38,6 @@ Bingo::Bingo(const std::filesystem::path& path)
 				std::stringstream lineStream(curLine);
 				for (int x = 0; x < 5; ++x)
 				{
-
 					lineStream >> bingoBoard.at(x, y);
 				}
 
@@ -50,22 +50,83 @@ Bingo::Bingo(const std::filesystem::path& path)
 	}
 }
 
-uint32_t Bingo::Play()
+const Bingo::BingoBoard& Bingo::PlayMainLoop()
 {
 	for (auto nb : bingoNumbers_)
 	{
 		for (auto& bingoBoard : bingoBoards_)
 		{
-			bingoBoard.markNumber(nb);
+			bingoBoard.MarkNumber(nb);
 			if (bingoBoard.HasWon())
-				return;
+			{
+				bingoBoard.winningNumber_ = nb;
+				return bingoBoard;
+			}
 		}
 	}
+
+	assert(false);
+	return Bingo::BingoBoard();
 }
+
+uint32_t Bingo::Play()
+{
+	const auto& winningBoard = PlayMainLoop();
+
+	// Compute Score
+	uint32_t score = 0;
+	for (int i = 0; i < winningBoard.matrix_.size(); ++i)
+	{
+		if (!winningBoard.matrix_[i].isMarked)
+			score += winningBoard.matrix_[i].number_;
+	}
+	score *= winningBoard.winningNumber_;
+
+	return score;
+}
+
 
 bool Bingo::BingoBoard::HasWon()
 {
+	// Check all the lines
+	for (int y = 0; y < 5; ++y)
+	{
+		bool line = true;
+		for (int x = 0; x < 5; ++x)
+		{
+			line &= IsMarked(x, y);
+		}
 
+		if (line)
+			return true;
+	}
+
+	// Check the columns
+	for (int x = 0; x < 5; ++x)
+	{
+		bool column = true;
+		for (int y = 0; y < 5; ++y)
+		{
+			column &= IsMarked(x, y);
+		}
+
+		if (column)
+			return true;
+	}
+
+	// Check the diags --> no don't
+	// Leaving this here for posterity (15 min of stupid debug)
+	//bool diag1 = true, diag2 = true;
+	//for (int y = 0; y < 5; ++y)
+	//{
+	//	int x = y;
+	//	diag1 &= IsMarked(x, y);
+
+	//	x = 4 - y;
+	//	diag2 &= IsMarked(x, y);
+	//}
+	//if (diag1 || diag2)
+	//	return true;
 
 	return false;
 }
