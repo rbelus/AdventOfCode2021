@@ -11,8 +11,9 @@ SubmarineControl::SubmarineControl(const std::filesystem::path& path) :
 	y(0),
 	aim(0)
 {
-	auto computeCourse = [&](std::stringstream& stream)
+	auto computeCourse = [&](std::string& line)
 	{
+		std::stringstream stream(line);
 		std::string dirStr;
 		int force;
 		stream >> dirStr >> force;

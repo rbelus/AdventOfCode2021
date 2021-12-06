@@ -6,7 +6,7 @@
 #include <string>
 #include <cassert>
 
-void ParseLinesInFile(const std::filesystem::path& path, const std::function<void(std::stringstream&)>& fnc)
+void ParseLinesInFile(const std::filesystem::path& path, const std::function<void(std::string&)>& fnc)
 {
 	std::ifstream file(path.c_str(), std::ifstream::in);
 	if (file.good())
@@ -16,8 +16,7 @@ void ParseLinesInFile(const std::filesystem::path& path, const std::function<voi
 			std::string curLine;
 			std::getline(file, curLine);
 
-			std::stringstream stream(curLine);
-			fnc(stream);
+			fnc(curLine);
 		}
 	}
 }

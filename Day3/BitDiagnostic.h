@@ -11,8 +11,9 @@ class BitDiagnostic
 public:
 	BitDiagnostic<BitSize>(const std::filesystem::path& path)
 	{
-		auto bitFill = [&](std::stringstream& stream)
+		auto bitFill = [&](std::string& line)
 		{
+			std::stringstream stream(line);
 			std::string bitLine;
 			stream >> bitLine;
 

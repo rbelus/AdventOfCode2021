@@ -4,4 +4,4 @@
 #include <functional>
 
 // Open file at path and execute fnc for each line in the file.
-void ParseLinesInFile(const std::filesystem::path& path, const std::function<void(std::stringstream&)>& fnc);
+void ParseLinesInFile(const std::filesystem::path& path, const std::function<void(std::string&)>& fnc);

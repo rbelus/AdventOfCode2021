@@ -8,8 +8,9 @@
 
 Sonar::Sonar(const std::filesystem::path& path)
 {
-	auto measureDepth = [&](std::stringstream& stream)
+	auto measureDepth = [&](std::string& line)
 	{
+		std::stringstream stream(line);
 		long depth;
 		stream >> depth;
 

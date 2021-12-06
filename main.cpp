@@ -4,6 +4,7 @@
 #include "Day2/SubmarineControl.h"
 #include "Day3/BitDiagnostic.h"
 #include "Day4/Bingo.h"
+#include "Day5/HydroVents.h"
 
 #define AOC_INPUT_DIR AOC_INPUT_DIR_CMAKE
 
@@ -55,6 +56,16 @@ int main()
 
 	auto scoreLose = bingo.Play(false);
 	std::cout << "Day4 part2 :" << scoreLose << std::endl;
+
+	// Day 5
+	inputFile = std::string(AOC_INPUT_DIR) + "/day5.txt";
+	inputFile.make_preferred();
+
+	HydroVentComputer hydro(inputFile);
+	int hydroOverlaps = hydro.CountOverlaps();
+
+	std::cout << "Day5 part1 :" << hydroOverlaps << std::endl;
+
 
 	return 0;
 }
