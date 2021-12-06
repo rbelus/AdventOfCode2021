@@ -1,9 +1,9 @@
 #include <iostream>
 
-#include "Sonar.h"
-#include "SubmarineControl.h"
-#include "BitDiagnostic.h"
-#include "Bingo.h"
+#include "Day1/Sonar.h"
+#include "Day2/SubmarineControl.h"
+#include "Day3/BitDiagnostic.h"
+#include "Day4/Bingo.h"
 
 #define AOC_INPUT_DIR AOC_INPUT_DIR_CMAKE
 
