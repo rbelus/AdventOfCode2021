@@ -5,6 +5,7 @@
 #include "Day3/BitDiagnostic.h"
 #include "Day4/Bingo.h"
 #include "Day5/HydroVents.h"
+#include "Day6/LanternFishSimulator.h"
 
 #define AOC_INPUT_DIR AOC_INPUT_DIR_CMAKE
 
@@ -70,6 +71,18 @@ int main()
 	hydroOverlaps = hydro.CountOverlaps();
 
 	std::cout << "Day5 part2 : " << hydroOverlaps << std::endl;
+
+
+	// Day 6
+	inputFile = std::string(AOC_INPUT_DIR) + "/day6.txt";
+	inputFile.make_preferred();
+
+	LanternFishSimulator fishSim(inputFile);
+	auto nbFishes = fishSim.Simulate(80);
+	std::cout << "Day 6 part 1 : " << nbFishes << std::endl;
+
+	nbFishes = fishSim.Simulate(256);
+	std::cout << "Day 6 part 2 : " << nbFishes << std::endl;
 
 
 	return 0;
