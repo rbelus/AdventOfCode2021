@@ -11,7 +11,8 @@ set (sourceList
 	Day3/BitDiagnostic.cpp
 	Day4/Bingo.cpp
 	Day5/HydroVents.cpp
-	Day6/LanternFishSimulator.cpp)
+	Day6/LanternFishSimulator.cpp
+	Day7/CrabAlignator.cpp)
 
 set (headerList
 	Tools/Tools.h
@@ -20,7 +21,8 @@ set (headerList
 	Day3/BitDiagnostic.h
 	Day4/Bingo.h
 	Day5/HydroVents.h
-	Day6/LanternFishSimulator.h)
+	Day6/LanternFishSimulator.h
+	Day7/CrabAlignator.h)
 
 
 add_executable(AdventOfCode2021 ${sourceList})

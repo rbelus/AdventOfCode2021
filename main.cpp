@@ -6,6 +6,7 @@
 #include "Day4/Bingo.h"
 #include "Day5/HydroVents.h"
 #include "Day6/LanternFishSimulator.h"
+#include "Day7/CrabAlignator.h"
 
 #define AOC_INPUT_DIR AOC_INPUT_DIR_CMAKE
 
@@ -84,6 +85,18 @@ int main()
 	nbFishes = fishSim.Simulate(256);
 	std::cout << "Day 6 part 2 : " << nbFishes << std::endl;
 
+	// Day 7
+	inputFile = std::string(AOC_INPUT_DIR) + "/day7.txt";
+	inputFile.make_preferred();
+
+	CrabAlignator crabAlign(inputFile);
+	auto lowestFuel = crabAlign.FindLowestFuel(true);
+
+	std::cout << "Day 7 part 1 : " << lowestFuel << std::endl;
+
+	lowestFuel = crabAlign.FindLowestFuel(false);
+
+	std::cout << "Day 7 part 2 : " << lowestFuel << std::endl;
 
 	return 0;
 }
