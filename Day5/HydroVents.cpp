@@ -1,5 +1,4 @@
 #include "HydroVents.h"
-#include "HydroVents.h"
 #include <Tools/Tools.h>
 
 #include <regex>

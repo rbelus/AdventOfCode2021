@@ -1,6 +1,4 @@
 #include "LanternFishSimulator.h"
-#include "LanternFishSimulator.h"
-#include "LanternFishSimulator.h"
 
 #include <functional>
 #include <fstream>

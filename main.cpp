@@ -7,6 +7,7 @@
 #include "Day5/HydroVents.h"
 #include "Day6/LanternFishSimulator.h"
 #include "Day7/CrabAlignator.h"
+#include "Day8/DigiCrypto.h"
 
 #define AOC_INPUT_DIR AOC_INPUT_DIR_CMAKE
 
@@ -94,9 +95,20 @@ int main()
 
 	std::cout << "Day 7 part 1 : " << lowestFuel << std::endl;
 
-	lowestFuel = crabAlign.FindLowestFuel(false);
+	// TODO: not O(n2) algorithm for this
+	//lowestFuel = crabAlign.FindLowestFuel(false);
 
-	std::cout << "Day 7 part 2 : " << lowestFuel << std::endl;
+	//std::cout << "Day 7 part 2 : " << lowestFuel << std::endl;
+
+	// Day 8
+	inputFile = std::string(AOC_INPUT_DIR) + "/day8.txt";
+	inputFile.make_preferred();
+
+	DigiCrypto digiCrypto(inputFile);
+	std::cout << "Day 8 part 1 : " << digiCrypto.CountEasyDigitsInOutput() << std::endl;
+
+	std::cout << "Day 8 part 2 : " << digiCrypto.Decrypt() << std::endl;
+
 
 	return 0;
 }
