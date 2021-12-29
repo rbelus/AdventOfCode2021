@@ -8,6 +8,7 @@
 #include "Day6/LanternFishSimulator.h"
 #include "Day7/CrabAlignator.h"
 #include "Day8/DigiCrypto.h"
+#include "Day9/SmokeFlow.h"
 
 #define AOC_INPUT_DIR AOC_INPUT_DIR_CMAKE
 
@@ -108,6 +109,16 @@ int main()
 	std::cout << "Day 8 part 1 : " << digiCrypto.CountEasyDigitsInOutput() << std::endl;
 
 	std::cout << "Day 8 part 2 : " << digiCrypto.Decrypt() << std::endl;
+
+
+	// Day 9
+	inputFile = std::string(AOC_INPUT_DIR) + "/day9.txt";
+	inputFile.make_preferred();
+
+	SmokeFlow smoker(inputFile);
+	smoker.FindLowPoints();
+
+	std::cout << "Day 9 part 1 : " << smoker.ComputeRiskLevel() << std::endl;
 
 
 	return 0;

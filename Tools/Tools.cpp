@@ -20,3 +20,19 @@ void ParseLinesInFile(const std::filesystem::path& path, const std::function<voi
 		}
 	}
 }
+
+uint16_t CountLinesInFile(const std::filesystem::path& path)
+{
+	uint16_t ret = 0;
+	std::ifstream file(path.c_str(), std::ifstream::in);
+	if (file.good())
+	{
+		while (file.peek() != EOF)
+		{
+			std::string dummy;
+			std::getline(file, dummy);
+			ret++;
+		}
+	}
+	return ret;
+}
